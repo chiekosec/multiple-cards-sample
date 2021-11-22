@@ -1,0 +1,22 @@
+{
+  "name": "subscriptions-with-fixed-prices",
+  "version": "1.0.0",
+  "description": "A Stripe sample for collecting fixed price recurring payments with Stripe subscriptions.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "stripe-demos",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.13",
+    "stripe": "8.145.0"
+  }
+}
