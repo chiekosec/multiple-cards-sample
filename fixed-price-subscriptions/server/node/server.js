@@ -142,20 +142,20 @@ app.post("/set-default", async (req, res) => {
 app.post("/remove-payment-method", async (req, res) => {
   const paymentMethod = await stripe.paymentMethods.detach(req.body.pm);
 
-  const data = await paymentModel.getDefaultPm(req.cookies['user'])
+  const data = await paymentModel.getDefaultPm(req.cookies["user"]);
 
   if (data[0].defaultPaymentMethodId === req.body.pm) {
     paymentModel
-    .updateCustomerInfo({
-      userEmail: req.cookies["user"],
-      defaultPaymentMethodId: null,
-    })
-    .then((data) => {
-      res.send({ success: 1 });
-    })
-    .catch((e) => {
-      res.status(400).json({ error: "DB ERROR!!!" });
-    });
+      .updateCustomerInfo({
+        userEmail: req.cookies["user"],
+        defaultPaymentMethodId: null,
+      })
+      .then((data) => {
+        res.send({ success: 1 });
+      })
+      .catch((e) => {
+        res.status(400).json({ error: "DB ERROR!!!" });
+      });
   } else {
     res.send({ success: 1 });
   }
@@ -217,17 +217,6 @@ app.get("/update-payment", async (req, res) => {
   res.status(200).json({ PI: paymentIntent });
 });
 
-mongoose
-  .connect(
-    "mongodb+srv://admin:adminadmin@twitter-clone-cluster.gwjmq.mongodb.net/stripe?retryWrites=true&w=majority",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    app.listen(4242, () =>
-      console.log(`Node server listening on port http://localhost:${4242}!`)
-    );
-  })
-  .catch((e) => console.log(e));
+app.listen(4242, () =>
+  console.log(`Node server listening on port http://localhost:${4242}!`)
+);
